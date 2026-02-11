@@ -5,23 +5,68 @@ import Image from "next/image"
 import { X, ChevronLeft, ChevronRight } from "lucide-react"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
-import PageHeader from "@/components/page-header"
 import { useAnimateOnScroll } from "@/hooks/use-animate-on-scroll"
 
 const galleryImages = [
-  { src: "/images/hero-event.jpg", alt: "Luxury event venue setup", category: "Events" },
-  { src: "/images/wedding.jpg", alt: "Beautiful wedding ceremony", category: "Weddings" },
-  { src: "/images/birthday.jpg", alt: "Birthday party celebration", category: "Birthdays" },
-  { src: "/images/corporate.jpg", alt: "Corporate conference", category: "Corporate" },
-  { src: "/images/concert.jpg", alt: "Live concert performance", category: "Entertainment" },
-  { src: "/images/exhibition.jpg", alt: "Exhibition setup", category: "Exhibitions" },
-  { src: "/images/social-event.jpg", alt: "Social gathering event", category: "Social" },
-  { src: "/images/gallery-1.jpg", alt: "Wedding reception table", category: "Weddings" },
-  { src: "/images/gallery-2.jpg", alt: "Outdoor event setup", category: "Events" },
-  { src: "/images/gallery-3.jpg", alt: "Stage performance", category: "Entertainment" },
-  { src: "/images/gallery-4.jpg", alt: "Fine dining table setting", category: "Events" },
-  { src: "/images/about-team.jpg", alt: "Team at work", category: "Behind the Scenes" },
+  { src: "/images/hero-event.jpg", alt: "Corporate conference setup", category: "Corporate Events" },
+  { src: "/images/wedding.jpg", alt: "Award ceremony venue", category: "Award Nights" },
+  { src: "/images/birthday.jpg", alt: "Cultural event celebration", category: "Cultural Events" },
+  { src: "/images/corporate.jpg", alt: "Corporate conference", category: "Corporate Events" },
+  { src: "/images/concert.jpg", alt: "Brand launch experience", category: "Brand Launches" },
+  { src: "/images/exhibition.jpg", alt: "Exhibition setup", category: "Corporate Events" },
+  { src: "/images/social-event.jpg", alt: "Advertising campaign shoot", category: "Advertising Campaigns" },
+  { src: "/images/gallery-1.jpg", alt: "Premium event setup", category: "Corporate Events" },
+  { src: "/images/gallery-2.jpg", alt: "Outdoor brand activation", category: "Brand Launches" },
+  { src: "/images/gallery-3.jpg", alt: "Stage performance setup", category: "Cultural Events" },
+  { src: "/images/gallery-4.jpg", alt: "Fine dining event", category: "Corporate Events" },
+  { src: "/images/about-team.jpg", alt: "Behind the scenes", category: "Behind the Scenes" },
 ]
+
+function HeroSection() {
+  const { ref, isVisible } = useAnimateOnScroll()
+
+  return (
+    <section className="relative overflow-hidden bg-gradient-to-br from-foreground via-foreground/95 to-foreground/90 py-20 lg:py-32" ref={ref}>
+      <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+      <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
+        <div className="mx-auto max-w-4xl text-center">
+          <div className={`mb-6 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+            <span className="inline-block rounded-full bg-accent/20 px-4 py-1.5 text-sm font-semibold text-accent">
+              GALLERY
+            </span>
+          </div>
+          <h1
+            className={`mb-6 text-4xl font-bold leading-tight tracking-tight text-background lg:text-6xl ${isVisible ? "animate-fade-in-up" : "opacity-0"
+              }`}
+            style={{ animationDelay: "100ms" }}
+          >
+            Experiential Campaigns &{" "}
+            <span className="bg-gradient-to-r from-accent to-accent/60 bg-clip-text text-transparent">
+              Event Highlights
+            </span>
+          </h1>
+          <div
+            className={`space-y-4 text-lg leading-relaxed text-background/80 ${isVisible ? "animate-fade-in-up" : "opacity-0"
+              }`}
+            style={{ animationDelay: "200ms" }}
+          >
+            <p>
+              Explore the StraComm Global gallery for a visual journey through our events, experiential campaigns,
+              and branding initiatives.
+            </p>
+            <p>
+              The gallery captures moments from <span className="font-semibold text-background">corporate conferences, brand launches, award nights,
+                cultural events, and integrated advertising campaigns</span>, showcasing our attention to detail and execution excellence.
+            </p>
+            <p className="text-xl font-semibold text-background">
+              Every frame represents strategic thinking, creative execution, and successful brand communication.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
 
 function GalleryGrid() {
   const [lightbox, setLightbox] = useState<number | null>(null)
@@ -37,8 +82,18 @@ function GalleryGrid() {
     )
 
   return (
-    <section className="bg-background py-24 lg:py-32" ref={ref}>
+    <section className="bg-background py-20 lg:py-28" ref={ref}>
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
+        {/* Section Header */}
+        <div className="mb-16 text-center">
+          <h2 className="mb-4 text-3xl font-bold text-foreground lg:text-4xl">
+            Visual Stories
+          </h2>
+          <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
+            A collection of moments that define our commitment to excellence
+          </p>
+        </div>
+
         {/* Masonry-like Grid */}
         <div className="columns-1 gap-4 sm:columns-2 lg:columns-3">
           {galleryImages.map((image, i) => (
@@ -46,9 +101,8 @@ function GalleryGrid() {
               key={image.src}
               type="button"
               onClick={() => openLightbox(i)}
-              className={`group mb-4 block w-full overflow-hidden rounded-2xl ${
-                isVisible ? "animate-fade-in-up" : "opacity-0"
-              }`}
+              className={`group mb-4 block w-full overflow-hidden rounded-2xl border border-border transition-all duration-300 hover:border-accent/50 hover:shadow-2xl ${isVisible ? "animate-fade-in-up" : "opacity-0"
+                }`}
               style={{ animationDelay: `${i * 60}ms` }}
             >
               <div className="relative overflow-hidden">
@@ -59,10 +113,13 @@ function GalleryGrid() {
                   height={i % 3 === 0 ? 400 : i % 3 === 1 ? 500 : 350}
                   className="w-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 flex items-end bg-foreground/0 p-4 transition-all duration-500 group-hover:bg-foreground/50">
-                  <span className="translate-y-4 rounded-full bg-accent px-3 py-1 text-xs font-semibold text-accent-foreground opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-                    {image.category}
-                  </span>
+                <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/40 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                  <div className="absolute bottom-0 left-0 right-0 p-4">
+                    <span className="inline-block rounded-full bg-accent/90 px-3 py-1 text-xs font-semibold text-accent-foreground">
+                      {image.category}
+                    </span>
+                    <p className="mt-2 text-sm text-white">{image.alt}</p>
+                  </div>
                 </div>
               </div>
             </button>
@@ -124,12 +181,7 @@ export default function GalleryPage() {
   return (
     <main>
       <Navbar />
-      <PageHeader
-        title="Our"
-        highlight="Gallery"
-        subtitle="A visual journey through our most memorable events and celebrations."
-        breadcrumb="Gallery"
-      />
+      <HeroSection />
       <GalleryGrid />
       <Footer />
     </main>

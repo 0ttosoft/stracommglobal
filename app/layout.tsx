@@ -1,6 +1,7 @@
 import React from "react"
 import type { Metadata } from "next"
 import { Inter, Playfair_Display } from "next/font/google"
+import FloatingButtons from "@/components/floating-buttons"
 
 import "./globals.css"
 
@@ -16,6 +17,9 @@ export const metadata: Metadata = {
     "Stracomm Global - Premier event management, wedding planning, corporate events, and experiential campaign consultants. Creating unforgettable experiences.",
   keywords:
     "event management, wedding planning, corporate events, birthday party, stracomm global, event planner India",
+  icons: {
+    icon: "/images/logo-dark.png",
+  },
 }
 
 export default function RootLayout({
@@ -30,6 +34,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         {children}
+        <FloatingButtons />
       </body>
     </html>
   )

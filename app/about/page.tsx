@@ -3,7 +3,6 @@
 import Image from "next/image"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
-import PageHeader from "@/components/page-header"
 import { useAnimateOnScroll } from "@/hooks/use-animate-on-scroll"
 import { Target, Eye, Award, Users, Heart, Lightbulb } from "lucide-react"
 
@@ -30,14 +29,68 @@ const values = [
   },
 ]
 
+function HeroSection() {
+  const { ref, isVisible } = useAnimateOnScroll()
+
+  return (
+    <section className="relative overflow-hidden bg-gradient-to-br from-foreground via-foreground/95 to-foreground/90 py-20 lg:py-32" ref={ref}>
+      <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+      <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
+        <div className="mx-auto max-w-4xl text-center">
+          <div className={`mb-6 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+            <span className="inline-block rounded-full bg-accent/20 px-4 py-1.5 text-sm font-semibold text-accent">
+              ABOUT US
+            </span>
+          </div>
+          <h1
+            className={`mb-6 text-4xl font-bold leading-tight tracking-tight text-background lg:text-6xl ${isVisible ? "animate-fade-in-up" : "opacity-0"
+              }`}
+            style={{ animationDelay: "100ms" }}
+          >
+            <span className="bg-gradient-to-r from-accent to-accent/60 bg-clip-text text-transparent">
+              StraComm Global
+            </span>
+          </h1>
+          <div
+            className={`space-y-4 text-lg leading-relaxed text-background/80 ${isVisible ? "animate-fade-in-up" : "opacity-0"
+              }`}
+            style={{ animationDelay: "200ms" }}
+          >
+            <p className="text-xl font-semibold text-background">
+              Strategic Spotlight Communications
+            </p>
+            <p>
+              StraComm Global is a leading event management and advertising company, positioned as{" "}
+              <span className="font-semibold text-background">Strategic Branding and Experiential Campaign Consultants</span>{" "}
+              for brands that seek visibility with purpose.
+            </p>
+            <p>
+              We specialize in designing and executing strategic brand experiences, corporate events, and integrated
+              advertising campaigns that leave a lasting impression. Our approach blends insight-driven strategy,
+              creative excellence, and seamless execution to help brands communicate powerfully with their audiences.
+            </p>
+            <p className="text-xl font-semibold text-background">
+              At StraComm Global, we believe every brand interaction is an opportunity to tell a story.
+            </p>
+            <p>
+              From high-profile corporate events and government conclaves to award shows, brand launches, and experiential
+              marketing campaigns, we curate experiences that align with business objectives and deliver measurable impact.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function StorySection() {
   const { ref, isVisible } = useAnimateOnScroll()
   return (
-    <section className="bg-background py-24 lg:py-32" ref={ref}>
+    <section className="bg-background py-20 lg:py-28" ref={ref}>
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
           <div className={`${isVisible ? "animate-slide-in-left" : "opacity-0"}`}>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-border shadow-xl">
               <Image
                 src="/images/about-team.jpg"
                 alt="Stracomm Global team working together"
@@ -50,19 +103,21 @@ function StorySection() {
             <span className="mb-3 inline-block text-sm font-semibold uppercase tracking-widest text-accent">
               Our Story
             </span>
-            <h2 className="font-serif text-3xl font-bold text-foreground md:text-4xl">
-              A Decade of Creating <span className="text-accent">Extraordinary</span> Events
+            <h2 className="text-3xl font-bold text-foreground md:text-4xl">
+              Creating <span className="text-accent">Strategic Brand Experiences</span>
             </h2>
             <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-              Founded with a vision to redefine event management in India, Stracomm Global has
-              grown from a passionate startup to one of the most trusted names in strategic
-              branding and experiential campaigns. Our journey has been marked by innovation,
-              creativity, and an unwavering commitment to client satisfaction.
+              Founded with a vision to redefine event management and brand communication in India, StraComm Global has
+              grown from a passionate startup to one of the most trusted names in strategic branding and experiential campaigns.
+              Our journey has been marked by innovation, creativity, and an unwavering commitment to client satisfaction.
             </p>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-              Over the years, we have successfully executed hundreds of events across the
-              country, from intimate gatherings to large-scale corporate conferences, each one
-              tailored to exceed expectations and create lasting memories.
+              Over the years, we have successfully executed hundreds of high-impact events and campaigns across the
+              country—from intimate brand activations to large-scale corporate conferences and government summits—each one
+              tailored to exceed expectations and create lasting brand impressions.
+            </p>
+            <p className="mt-4 text-base font-semibold text-foreground">
+              We don't just manage events. We create strategic moments that matter.
             </p>
           </div>
         </div>
@@ -74,39 +129,38 @@ function StorySection() {
 function MissionVisionSection() {
   const { ref, isVisible } = useAnimateOnScroll()
   return (
-    <section className="bg-secondary py-24 lg:py-32" ref={ref}>
+    <section className="bg-secondary py-20 lg:py-28" ref={ref}>
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="grid gap-8 md:grid-cols-2">
           <div
-            className={`rounded-2xl border border-border bg-background p-8 lg:p-12 ${
-              isVisible ? "animate-fade-in-up" : "opacity-0"
-            }`}
+            className={`rounded-2xl border border-border bg-background p-8 shadow-lg transition-all duration-300 hover:shadow-xl lg:p-12 ${isVisible ? "animate-fade-in-up" : "opacity-0"
+              }`}
           >
             <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-accent/10">
               <Target className="h-7 w-7 text-accent" />
             </div>
-            <h3 className="font-serif text-2xl font-bold text-foreground">Our Mission</h3>
+            <h3 className="text-2xl font-bold text-foreground">Our Mission</h3>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-              To deliver world-class event experiences through strategic planning, creative
+              To deliver world-class brand experiences through strategic planning, creative
               innovation, and flawless execution. We aim to be the bridge between our clients'
               vision and reality, creating moments that inspire, engage, and leave lasting
-              impressions.
+              impressions that drive business results.
             </p>
           </div>
           <div
-            className={`rounded-2xl border border-border bg-background p-8 lg:p-12 ${
-              isVisible ? "animate-fade-in-up" : "opacity-0"
-            }`}
+            className={`rounded-2xl border border-border bg-background p-8 shadow-lg transition-all duration-300 hover:shadow-xl lg:p-12 ${isVisible ? "animate-fade-in-up" : "opacity-0"
+              }`}
             style={{ animationDelay: "200ms" }}
           >
             <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-accent/10">
               <Eye className="h-7 w-7 text-accent" />
             </div>
-            <h3 className="font-serif text-2xl font-bold text-foreground">Our Vision</h3>
+            <h3 className="text-2xl font-bold text-foreground">Our Vision</h3>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-              To become the most sought-after event management and branding consultancy,
+              To become the most sought-after strategic branding and experiential campaign consultancy,
               recognized globally for our innovative approach, exceptional service quality, and
-              our ability to transform events into powerful brand experiences.
+              our ability to transform brand interactions into powerful, memorable experiences that
+              create lasting value.
             </p>
           </div>
         </div>
@@ -118,13 +172,13 @@ function MissionVisionSection() {
 function ValuesSection() {
   const { ref, isVisible } = useAnimateOnScroll()
   return (
-    <section className="bg-background py-24 lg:py-32" ref={ref}>
+    <section className="bg-background py-20 lg:py-28" ref={ref}>
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className={`mb-16 text-center ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
           <span className="mb-3 inline-block text-sm font-semibold uppercase tracking-widest text-accent">
             Our Values
           </span>
-          <h2 className="font-serif text-3xl font-bold text-foreground md:text-4xl">
+          <h2 className="text-3xl font-bold text-foreground md:text-4xl">
             What Drives <span className="text-accent">Us</span>
           </h2>
         </div>
@@ -132,9 +186,8 @@ function ValuesSection() {
           {values.map((value, i) => (
             <div
               key={value.title}
-              className={`rounded-2xl border border-border bg-card p-6 text-center transition-all duration-300 hover:border-accent/30 hover:shadow-lg ${
-                isVisible ? "animate-fade-in-up" : "opacity-0"
-              }`}
+              className={`rounded-2xl border border-border bg-card p-6 text-center shadow-lg transition-all duration-300 hover:border-accent/30 hover:shadow-xl ${isVisible ? "animate-fade-in-up" : "opacity-0"
+                }`}
               style={{ animationDelay: `${i * 100}ms` }}
             >
               <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-accent/10">
@@ -156,12 +209,7 @@ export default function AboutPage() {
   return (
     <main>
       <Navbar />
-      <PageHeader
-        title="About"
-        highlight="Stracomm Global"
-        subtitle="Strategic Branding & Experiential Campaign Consultants with over a decade of excellence in creating unforgettable events."
-        breadcrumb="About Us"
-      />
+      <HeroSection />
       <StorySection />
       <MissionVisionSection />
       <ValuesSection />

@@ -12,13 +12,10 @@ const navLinks = [
     href: "/services",
     label: "Services",
     subLinks: [
-      { href: "/services/event-management", label: "Event Management" },
-      { href: "/services/wedding-planning", label: "Wedding Planning" },
-      { href: "/services/birthday-party", label: "Birthday Party Planning" },
-      { href: "/services/corporate-events", label: "Corporate Events" },
-      { href: "/services/concerts-shows", label: "Concerts & Shows" },
-      { href: "/services/exhibitions", label: "Exhibitions & Trade Shows" },
-      { href: "/services/social-gatherings", label: "Social Gatherings" },
+      { href: "/services/event-management", label: "Event Management & Experiential Marketing" },
+      { href: "/services/advertising", label: "Advertising & Brand Communication" },
+      { href: "/services/creative-design", label: "Creative & Design Solutions" },
+      { href: "/services/production", label: "Production & Technical Execution" },
     ],
   },
   { href: "/portfolio", label: "Portfolio" },
@@ -41,11 +38,10 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
           ? "bg-background/95 backdrop-blur-md shadow-lg border-b border-border"
           : "bg-transparent"
-      }`}
+        }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-8">
         {/* Logo */}
@@ -63,16 +59,14 @@ export default function Navbar() {
           />
           <div className="flex flex-col">
             <span
-              className={`text-lg font-bold tracking-wider lg:text-xl transition-colors duration-500 ${
-                scrolled ? "text-foreground" : "text-white"
-              }`}
+              className={`text-lg font-bold tracking-wider lg:text-xl transition-colors duration-500 ${scrolled ? "text-foreground" : "text-white"
+                }`}
             >
               STRACOMM
             </span>
             <span
-              className={`hidden text-[10px] tracking-widest lg:block transition-colors duration-500 ${
-                scrolled ? "text-muted-foreground" : "text-white/70"
-              }`}
+              className={`hidden text-[10px] tracking-widest lg:block transition-colors duration-500 ${scrolled ? "text-muted-foreground" : "text-white/70"
+                }`}
             >
               GLOBAL
             </span>
@@ -91,21 +85,19 @@ export default function Navbar() {
               >
                 <Link
                   href={link.href}
-                  className={`flex items-center gap-1 rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 hover:bg-accent/10 ${
-                    scrolled
+                  className={`flex items-center gap-1 rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 hover:bg-accent/10 ${scrolled
                       ? "text-foreground hover:text-accent"
                       : "text-white/90 hover:text-white"
-                  }`}
+                    }`}
                 >
                   {link.label}
                   <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:rotate-180" />
                 </Link>
                 <div
-                  className={`absolute left-0 top-full pt-2 transition-all duration-300 ${
-                    servicesOpen
+                  className={`absolute left-0 top-full pt-2 transition-all duration-300 ${servicesOpen
                       ? "visible opacity-100 translate-y-0"
                       : "invisible opacity-0 -translate-y-2"
-                  }`}
+                    }`}
                 >
                   <div className="w-64 rounded-xl border border-border bg-background p-2 shadow-xl">
                     {link.subLinks.map((sub) => (
@@ -124,11 +116,10 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 hover:bg-accent/10 ${
-                  scrolled
+                className={`rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 hover:bg-accent/10 ${scrolled
                     ? "text-foreground hover:text-accent"
                     : "text-white/90 hover:text-white"
-                }`}
+                  }`}
               >
                 {link.label}
               </Link>
@@ -148,11 +139,10 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => setIsOpen(!isOpen)}
-            className={`rounded-lg p-2 transition-colors lg:hidden ${
-              scrolled
+            className={`rounded-lg p-2 transition-colors lg:hidden ${scrolled
                 ? "text-foreground hover:bg-muted"
                 : "text-white hover:bg-white/10"
-            }`}
+              }`}
             aria-label="Toggle navigation menu"
           >
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -162,9 +152,8 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <div
-        className={`overflow-hidden transition-all duration-500 lg:hidden ${
-          isOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
-        }`}
+        className={`overflow-hidden transition-all duration-500 lg:hidden ${isOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
+          }`}
       >
         <nav className="border-t border-border bg-background px-4 py-4">
           {navLinks.map((link) =>
@@ -177,15 +166,13 @@ export default function Navbar() {
                 >
                   {link.label}
                   <ChevronDown
-                    className={`h-4 w-4 transition-transform ${
-                      servicesOpen ? "rotate-180" : ""
-                    }`}
+                    className={`h-4 w-4 transition-transform ${servicesOpen ? "rotate-180" : ""
+                      }`}
                   />
                 </button>
                 <div
-                  className={`overflow-hidden transition-all duration-300 ${
-                    servicesOpen ? "max-h-96" : "max-h-0"
-                  }`}
+                  className={`overflow-hidden transition-all duration-300 ${servicesOpen ? "max-h-96" : "max-h-0"
+                    }`}
                 >
                   {link.subLinks.map((sub) => (
                     <Link
